@@ -104,7 +104,6 @@ class mlabInteractor extends EventEmitter {
                         this.databases.set(data[i], new database(apiKey, data[i], d))
                     })
                     this.emit('ready')
-                    console.log('Ready')
                 })
         })
         .end()
@@ -285,7 +284,6 @@ class mlabInteractor extends EventEmitter {
         };
         let query = formFormat(op)
         if(!cache){ 
-            console.log(`/api/1/databases/${options.databaseName}/collections/${options.collectionName}?apiKey=${this.apiKey}${query.length ? '&' : ''}${query}`)
             return new Promise(resolve => {
                 let req = https.request({
                     host:'api.mongolab.com',
@@ -301,7 +299,6 @@ class mlabInteractor extends EventEmitter {
                     resolve(data)
                 })
                 options.documents = options.documents.map(doc => parseMap(doc))
-                console.log(JSON.stringify(options.documents))
                 req.write(
                     JSON.stringify(options.documents)
                 )

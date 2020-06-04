@@ -1,0 +1,409 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+ <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>foodoc/template/utils/template.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #800000;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #800000;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #800000;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #800000;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":false,"dateFormat":"Do MMM YYYY","systemName":"mLab Promise","systemSummary":"A method for communicating with the mLab API","systemLogo":"img/favicon.ico","systemColor":"#800000","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"Produced by logos","copyright":"Collapsa Copyright ©2020","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":"","methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":"","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/favicon.ico);">
+					mLab Promise
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#changeResult">changeResult</a></li>
+											<li><a href="global.html#documentListOptions">documentListOptions</a></li>
+											<li><a href="global.html#find">find</a></li>
+											<li><a href="global.html#Prism">Prism</a></li>
+											<li><a href="global.html#Query">Query</a></li>
+											<li><a href="global.html#registerDoclet">registerDoclet</a></li>
+											<li><a href="global.html#registerDoclets">registerDoclets</a></li>
+											<li><a href="global.html#registerReadme">registerReadme</a></li>
+											<li><a href="global.html#registerSources">registerSources</a></li>
+											<li><a href="global.html#singleDocumentOptions">singleDocumentOptions</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="baseStructure.html">baseStructure</a></li>
+											<li><a href="collection.html">collection</a></li>
+											<li><a href="database.html">database</a></li>
+											<li><a href="document.html">document</a></li>
+											<li><a href="mlabInteractor.html">mlabInteractor</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">foodoc/template/utils/template.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">var fs = require('jsdoc/fs');
+var path = require('jsdoc/path');
+var helper = require('jsdoc/util/templateHelper');
+var markdown = require('jsdoc/util/markdown').getParser();
+var hbs = require('./handlebarsHelper');
+var lunr = require('./lunrHelper');
+var processor = require('./postProcessor');
+var sanitizeHtml = require('sanitize-html');
+var extend = require('extend');
+var moment = require('moment');
+
+var kinds = exports.kinds = {
+	custom: ['readme', 'global', 'source', 'tutorial', 'list'],
+	pages: ['readme', 'global', 'source', 'tutorial', 'list', 'class', 'external', 'mixin', 'module', 'namespace', 'interface'],
+	symbols: ['tutorial', 'class', 'external', 'event', 'mixin', 'module', 'namespace', 'interface', 'member', 'function', 'constant', 'typedef'],
+	global: ['member', 'function', 'constant', 'typedef']
+};
+
+var options = exports.options = extend({
+	includeDate: true,
+	dateFormat: "Do MMM YYYY",
+	systemName: "FooDoc",
+	systemSummary: "A Bootstrap and Handlebars based template for JSDoc3.",
+	systemLogo: "",
+	systemColor: "",
+	navMembers: [],
+	footer: "",
+	copyright: "FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.",
+	linenums: true,
+	collapseSymbols: true,
+	inverseNav: true,
+	inlineNav: false,
+	outputSourceFiles: true,
+	sourceRootPath: null,
+	disablePackagePath: true,
+	outputSourcePath: false,
+	showTableOfContents: true,
+	showAccessFilter: true,
+	analytics: null,
+	methodHeadingReturns: true,
+	sort: "linenum, longname, version, since",
+	search: true,
+	favicon: null,
+	stylesheets: [],
+	scripts: []
+}, env.conf.templates || {});
+if (!options.navMembers.length){
+	options.navMembers = [
+	{"kind": "class", "title": "Classes", "summary": "All documented classes."},
+	{"kind": "external", "title": "Externals", "summary": "All documented external members."},
+	{"kind": "global", "title": "Globals", "summary": "All documented globals."},
+	{"kind": "mixin", "title": "Mixins", "summary": "All documented mixins."},
+	{"kind": "interface", "title": "Interfaces", "summary": "All documented interfaces."},
+	{"kind": "module", "title": "Modules", "summary": "All documented modules."},
+	{"kind": "namespace", "title": "Namespaces", "summary": "All documented namespaces."},
+	{"kind": "tutorial", "title": "Tutorials", "summary": "All available tutorials."}
+];
+}
+
+var faviconTypes = {
+	'.ico': 'image/x-icon',
+	'.png': 'image/png',
+	'.jpg': 'image/jpeg',
+	'.jpeg': 'image/jpeg',
+	'.gif': 'image/gif'
+};
+
+var config = exports.config = {
+	debug: false,
+	raw: env.opts,
+	version: env.version.number,
+	date: moment().format(options.dateFormat),
+	faviconType: options.favicon ? faviconTypes[path.extname(options.favicon)] : null,
+	dir: {
+		root: null,
+		tmpl: null,
+		static: null,
+		output: env.opts.destination,
+		images: path.join( env.opts.destination, 'img' ),
+		tutorials: env.opts.tutorials
+	}
+};
+
+var raw = exports.raw = {
+	data: null,
+	opts: {},
+	tutorials: []
+};
+
+var configured = false;
+exports.configure = function(taffyData, opts, tutorials){
+	raw.data = helper.prune(taffyData);
+	raw.opts = opts;
+	raw.tutorials = tutorials;
+	config.dir.root = opts.templates;
+	config.dir.tmpl = path.join(opts.template, 'tmpl');
+	config.dir.static = path.join(opts.template, 'static');
+	configured = true;
+	return config;
+};
+
+var navbar = exports.navbar = {};
+
+exports.postProcess = function(){
+	processor.registerReadme();
+	processor.registerModules();
+	processor.registerGlobals();
+	processor.registerDoclets();
+	processor.registerSources();
+	processor.registerTutorials();
+	processor.registerLists();
+	processor.process();
+	processor.buildNavbar(navbar);
+};
+
+exports.publish = function(){
+	generateStaticFiles();
+	generateDocs();
+	lunr.writeFilesSync(true);
+};
+
+exports.sanitize = function(html){
+	if (typeof html !== 'string') return;
+	return sanitizeHtml(html, {allowedTags: [], allowedAttributes: []}).replace(/\s+/g, ' ').trim();
+};
+
+/**
+ * @summary Find items in the current TaffyDB that match the specified key-value pairs.
+ * @param {Object|function} spec - An object of key-value pairs to match against (e.g. `{longname:"foo"}`), or a function that returns `true` if a value matches.
+ * @returns {Array.&lt;Object>} The matching items.
+ * @example {@caption The following shows supplying an object to perform a by example search against the data.}
+ * var foo = helper.find({longname:"foo"}).first(); // get the first doclet with a longname of `foo`
+ * var children = helper.find({memberof:"foo"}); // get all doclets which belong to the `foo` doclet.
+ */
+var find = exports.find = function (spec, sort) {
+	if (!configured) return [];
+	return sort ? raw.data(spec).order(sort).get() : raw.data(spec).get();
+};
+
+var linkto = exports.linkto = function(longname, linkText){
+	var text = (linkText || longname)+'';
+	// if no linkText was supplied lookup the longname and use the `linkText` property for the doclet.
+	if (typeof linkText !== 'string'){
+		var found = find({longname: longname});
+		if (found.length &amp;&amp; found[0].kind){
+			var doclet = found[0];
+			text = doclet.linkText || text;
+			if (doclet.kind === 'tutorial'){
+				return helper.toTutorial(doclet.longname, text, { tag: 'em', classname: 'disabled' });
+			}
+		}
+	}
+	return helper.linkto(longname, text);
+};
+
+var getPages = exports.getPages = function(sort){
+	var members = {};
+	kinds.pages.forEach(function(kind){
+		members[kind] = find({kind: kind}, sort);
+	});
+	return members;
+};
+
+var generateStaticFiles = exports.generateStaticFiles = function(){
+	// first copy all files within the templates 'static' directory to the output directory
+	var files = fs.ls(config.dir.static, 3);
+	files.forEach(function(fileName){
+		var toDir = fs.toDir( fileName.replace( config.dir.static, config.dir.output ) );
+		fs.mkPath( toDir );
+		fs.copyFileSync( fileName, toDir );
+	});
+
+	// then copy the systemLogo file if one was supplied and update the option with the output file path
+	if (options.systemLogo){
+		var stats = fs.lstatSync(options.systemLogo);
+		if (stats.isFile()){
+			fs.mkPath(config.dir.images);
+			fs.copyFileSync(options.systemLogo, config.dir.images);
+			options.systemLogo = 'img/'+path.basename(options.systemLogo);
+		}
+	}
+
+	// same for the favicon
+	if (options.favicon){
+		var stats = fs.lstatSync(options.favicon);
+		if (stats.isFile()){
+			fs.copyFileSync(options.favicon, env.opts.destination, 'favicon' + path.extname(options.favicon));
+			options.favicon = 'favicon' + path.extname(options.favicon);
+		}
+	}
+
+	// then copy all user supplied files
+	var userFiles;
+	if (options.default &amp;&amp; (userFiles = options.default.staticFiles)) {
+		// The canonical property name is `include`. We accept `paths` for backwards compatibility with a bug in JSDoc 3.2.x.
+		var paths = userFiles.include || userFiles.paths || [];
+		var filter = new (require('jsdoc/src/filter')).Filter(userFiles);
+		var scanner = new (require('jsdoc/src/scanner')).Scanner();
+		paths.forEach(function(filePath) {
+			var files = scanner.scan([filePath], 10, filter);
+			files.forEach(function(fileName) {
+				var from = fs.toDir(filePath);
+				var toDir = fs.toDir( fileName.replace(from, config.dir.output) );
+				fs.mkPath(toDir);
+				fs.copyFileSync(fileName, toDir);
+			});
+		});
+	}
+};
+
+var generateDocs = exports.generateDocs = function(){
+	var pages = getPages();
+	Object.keys(pages).forEach(function(kind){
+		if (pages[kind].length){
+			pages[kind].forEach(function(doclet){
+				var filename = doclet.kind === 'tutorial' ? helper.tutorialToUrl(doclet.longname) : helper.longnameToUrl[doclet.longname];
+				if (!filename) return;
+
+				if (doclet.kind === 'list' &amp;&amp; !doclet.members.length) return;
+
+				var output = path.join(config.dir.output, filename),
+					html = hbs.render(doclet, doclet.kind !== 'source');
+
+				if (html === null) return;
+
+				fs.writeFileSync(output, html, 'utf8');
+				if (doclet.kind !== 'source'){
+					lunr.add(doclet, html);
+				}
+			});
+		}
+	});
+};
+
+var hasNavMember = exports.hasNavMember = function(kind){
+	return options.navMembers.findIndex(function(member){
+		return member.kind == kind;
+	}) != -1;
+};
+
+exports.createCrumbs = function(doclet){
+	var crumbs = [];
+	if (doclet.kind === 'readme' || doclet.kind === 'source') return crumbs;
+	crumbs.push(linkto("index", "Home"));
+	if (doclet.kind !== 'list' &amp;&amp; doclet.kind !== 'global' &amp;&amp; hasNavMember(doclet.kind)){
+		crumbs.push(linkto("list:"+doclet.kind));
+	}
+	if (doclet.kind === 'tutorial'){
+		helper.getAncestors(raw.data, doclet).forEach(function(ancestor){
+			crumbs.push(linkto(ancestor.longname));
+		});
+		crumbs.push(doclet.title || doclet.name);
+	} else {
+		crumbs.push(doclet.ancestors.join('') + doclet.name);
+	}
+	return crumbs;
+};</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Produced by logos</div>
+				<div class="copyright">Collapsa Copyright ©2020</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

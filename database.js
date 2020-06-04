@@ -24,7 +24,6 @@ class database extends baseStructure {
      * @param {string} name Name of the collection to create
      */
     addCollection(name){
-        console.log(this.apiKey, name, this.name)
         this.collections.set(name, new collection(this.apiKey, name, [], this.name))
     }
 }

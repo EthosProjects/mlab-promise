@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+ <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 		<title>Globals</title>
 		<!--[if lt IE 9]>
@@ -40,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":false,"dateFormat":"Do MMM YYYY","systemName":"mLab Promise","systemSummary":"A method for communicating with the mLab API","systemLogo":"img/favicon.ico","systemColor":"#800000","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"ok","copyright":"wow","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":"","methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":"","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":false,"dateFormat":"Do MMM YYYY","systemName":"mLab Promise","systemSummary":"A method for communicating with the mLab API","systemLogo":"img/favicon.ico","systemColor":"#800000","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"Produced by logos","copyright":"Collapsa Copyright ©2020","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":"","methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":"","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -67,7 +68,13 @@
 									<ul class="dropdown-menu">
 											<li><a href="global.html#changeResult">changeResult</a></li>
 											<li><a href="global.html#documentListOptions">documentListOptions</a></li>
+											<li><a href="global.html#find">find</a></li>
+											<li><a href="global.html#Prism">Prism</a></li>
 											<li><a href="global.html#Query">Query</a></li>
+											<li><a href="global.html#registerDoclet">registerDoclet</a></li>
+											<li><a href="global.html#registerDoclets">registerDoclets</a></li>
+											<li><a href="global.html#registerReadme">registerReadme</a></li>
+											<li><a href="global.html#registerSources">registerSources</a></li>
 											<li><a href="global.html#singleDocumentOptions">singleDocumentOptions</a></li>
 									</ul>
 								</li>
@@ -111,6 +118,298 @@
 						</ol>
 					<section>
 							<article class="secondary">
+									<h3>Members</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title member public">
+			<h4 id="Prism" class="member public"><span class="name">Prism</span><span class="signature-type"></span></h4>
+		</dt>
+<dd class="symbol-details member public">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Prism: Lightweight, robust, elegant syntax highlighting<br>
+			MIT license http://www.opensource.org/licenses/mit-license.php/</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- author -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Author</label>
+								<div class="col-sm-9">
+										<p class="form-control-static">Lea Verou http://lea.verou.me</p>
+								</div>
+							</div>
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="foodoc_template_static_js_prism.js.html">foodoc/template/static/js/prism.js</a>, <a href="foodoc_template_static_js_prism.js.html#line-20">line 20</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public">
+			<h4 id="registerDoclet" class="member public"><span class="name">registerDoclet</span><span class="signature-type"></span></h4>
+				<div class="summary"><p>Registers the given doclet creating and registering a link for it and appending an id value to use when rendering in HTML.</p></div></dt>
+<dd class="symbol-details member public">
+	<div class="symbol-details-inner">
+			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>doclet</code></td>
+							<td></td>
+							<td class="last">
+									<p>The doclet to register.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="foodoc_template_utils_postProcessor.js.html">foodoc/template/utils/postProcessor.js</a>, <a href="foodoc_template_utils_postProcessor.js.html#line-70">line 70</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title member public">
+			<h4 id="find" class="member public"><span class="name">find</span><span class="signature-type"></span></h4>
+				<div class="summary"><p>Find items in the current TaffyDB that match the specified key-value pairs.</p></div></dt>
+<dd class="symbol-details member public">
+	<div class="symbol-details-inner">
+			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>spec</code></td>
+							<td><span class="param-type">Object</span> | <span class="param-type">function</span></td>
+							<td class="last">
+									<p>An object of key-value pairs to match against (e.g. <code>{longname:&quot;foo&quot;}</code>), or a function that returns <code>true</code> if a value matches.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;Object></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>The matching items.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-example"><h5>Examples</h5>		<div class="example-caption"><p>The following shows supplying an object to perform a by example search against the data.</p></div>
+					<div class="example-code">
+						<pre class="prettyprint source language-javascript"><code class="language-javascript">var foo &#x3D; helper.find({longname:&quot;foo&quot;}).first(); // get the first doclet with a longname of &#x60;foo&#x60;var children &#x3D; helper.find({memberof:&quot;foo&quot;}); // get all doclets which belong to the &#x60;foo&#x60; doclet.</code></pre>
+					</div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="foodoc_template_utils_template.js.html">foodoc/template/utils/template.js</a>, <a href="foodoc_template_utils_template.js.html#line-135">line 135</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
+									<h3>Methods</h3>
+									<dl class="symbol">
+											<hr/>
+											<dt class="symbol-title function public">
+			<h4 id="registerReadme" class="function public"><span class="name">registerReadme</span><span class="signature-params">()</span><span class="signature-type"></span></h4>
+				<div class="summary"><p>Registers the README.md file as the <code>readme</code> doclet.</p></div></dt>
+<dd class="symbol-details function public">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>This not only registers the doclet but also the link associated with it, reserving it prior to registering any other links.</p>
+			<p>The doclet is built up using the <code>systemName</code> and <code>systemSummary</code> options as the values for the associated <code>name</code> and <code>summary</code> properties of a doclet. The <code>longname</code> is simply the filename which is <code>index.html</code> and the <code>contents</code> is the markdown parsed <code>README.md</code> supplied as a source to jsdoc.</p></div>
+			</div>			<div class="callout callout-example"><h5>Examples</h5>		<div class="example-caption"><p>The following shows the basic structure of the generated doclet.</p></div>
+					<div class="example-code">
+						<pre class="prettyprint source language-javascript"><code class="language-javascript">{	kind: &quot;readme&quot;,	longname: &quot;index.html&quot;,	name: &quot;&lt;option:systemName&gt;&quot;,	summary: &quot;&lt;option:systemSummary&gt;&quot;,	contents: &quot;&lt;markdown:README.md&gt;&quot;}</code></pre>
+					</div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="foodoc_template_utils_postProcessor.js.html">foodoc/template/utils/postProcessor.js</a>, <a href="foodoc_template_utils_postProcessor.js.html#line-104">line 104</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public">
+			<h4 id="registerDoclets" class="function public"><span class="name">registerDoclets</span><span class="signature-params">()</span><span class="signature-type"></span></h4>
+				<div class="summary"><p>Registers all default doclets.</p></div></dt>
+<dd class="symbol-details function public">
+	<div class="symbol-details-inner">
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="foodoc_template_utils_postProcessor.js.html">foodoc/template/utils/postProcessor.js</a>, <a href="foodoc_template_utils_postProcessor.js.html#line-147">line 147</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public">
+			<h4 id="registerSources" class="function public"><span class="name">registerSources</span><span class="signature-params">()</span><span class="signature-type"></span></h4>
+				<div class="summary"><p>Registers all source files as a <code>source</code> doclet.</p></div></dt>
+<dd class="symbol-details function public">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>This method takes into account the <code>sourceRootPath</code> option and will remove this value from the file path when generating the <code>longname</code> value for the doclet. If this option is not supplied the default behavior is to find the common prefix of all file paths and trim that.</p></div>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="foodoc_template_utils_postProcessor.js.html">foodoc/template/utils/postProcessor.js</a>, <a href="foodoc_template_utils_postProcessor.js.html#line-185">line 185</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+									</dl>
 									<h3>Type Definitions</h3>
 									<dl class="symbol">
 											<hr/>
@@ -165,7 +464,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="index.js.html">index.js</a>, <a href="index.js.html#line-8">line 8</a></p>
+									<p class="form-control-static"><a href="mlabInteractor.js.html">mlabInteractor.js</a>, <a href="mlabInteractor.js.html#line-8">line 8</a></p>
 								</div>
 							</div>
 			
@@ -208,7 +507,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="index.js.html">index.js</a>, <a href="index.js.html#line-13">line 13</a></p>
+									<p class="form-control-static"><a href="mlabInteractor.js.html">mlabInteractor.js</a>, <a href="mlabInteractor.js.html#line-13">line 13</a></p>
 								</div>
 							</div>
 			
@@ -331,7 +630,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="index.js.html">index.js</a>, <a href="index.js.html#line-161">line 161</a></p>
+									<p class="form-control-static"><a href="mlabInteractor.js.html">mlabInteractor.js</a>, <a href="mlabInteractor.js.html#line-160">line 160</a></p>
 								</div>
 							</div>
 			
@@ -402,7 +701,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="index.js.html">index.js</a>, <a href="index.js.html#line-353">line 353</a></p>
+									<p class="form-control-static"><a href="mlabInteractor.js.html">mlabInteractor.js</a>, <a href="mlabInteractor.js.html#line-350">line 350</a></p>
 								</div>
 							</div>
 			
@@ -422,8 +721,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="footer-option">ok</div>
-				<div class="copyright">wow</div>
+				<div class="footer-option">Produced by logos</div>
+				<div class="copyright">Collapsa Copyright ©2020</div>
 			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
