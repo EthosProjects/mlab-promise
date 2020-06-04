@@ -1,0 +1,295 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>collection.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #800000;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #800000;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #800000;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #800000;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":false,"dateFormat":"Do MMM YYYY","systemName":"mLab Promise","systemSummary":"A method for communicating with the mLab API","systemLogo":"img/favicon.ico","systemColor":"#800000","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"ok","copyright":"wow","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":"","methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":"","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/favicon.ico);">
+					mLab Promise
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#changeResult">changeResult</a></li>
+											<li><a href="global.html#documentListOptions">documentListOptions</a></li>
+											<li><a href="global.html#Query">Query</a></li>
+											<li><a href="global.html#singleDocumentOptions">singleDocumentOptions</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="baseStructure.html">baseStructure</a></li>
+											<li><a href="collection.html">collection</a></li>
+											<li><a href="database.html">database</a></li>
+											<li><a href="document.html">document</a></li>
+											<li><a href="mlabInteractor.html">mlabInteractor</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">collection.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">const { Collection } = require('discord.js')
+const { EventEmitter } = require('events')
+const baseStructure = require('./baseStructure')
+const document = require('./document')
+const https = require('https')
+const getAllData = res => {
+    return new Promise((resolve, reject) => {
+        let buffer = []
+        res.on('data', data => buffer.push(data))
+        res.on('end', () => resolve(JSON.parse(buffer.join(''))))
+    })
+}
+const getBrokenData = res => {
+    return new Promise((resolve, reject) => {
+        let buffer = []
+        res.on('data', data => buffer.push(data))
+        res.on('end', () => resolve(buffer.join('')))
+    })
+}
+/**
+ * @extends {baseStructure}
+ * This is a cached collection of documents
+ */
+class collection extends baseStructure {
+    /**
+     * 
+     * @param {string} apiKey Your API key
+     * @param {string} name The name of the collection
+     * @param {Array} documents 
+     * @param {string} databaseName 
+     */
+    constructor(apiKey, name, documents, databaseName){
+        super(apiKey, name)
+        /**
+         * @type {Collection&lt;string, document>}
+         */
+        this.documents = new Collection(documents)
+        /**
+         * @type {String}
+         */
+        this.databaseName = databaseName
+    }
+    addDocument(doc){
+        if(this.documents.has(doc.id)) return this.updateDocument(doc)
+        return new Promise((resolve, reject) => {
+            let req = https.request({
+                host:'api.mlab.com',
+                path:`/api/1/databases/${this.databaseName}/collections/${this.name}?apiKey=${this.apiKey}`,
+                headers:{
+                    "content-type":'application/json'
+                },
+                method:'POST'
+            })
+            .on('response', async res => {
+                if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                let data = await getAllData(res)
+                this.documents.set(doc.id, new document(this.apiKey, doc.id, doc))
+                resolve()
+            })
+            req.write(JSON.stringify([doc]))
+            req.end()
+
+        })
+    }
+    addDocuments(docs){
+        return Promise.all(docs.map(doc => this.addDocument(doc)))
+    }
+    addDocumentsForce(docs){
+        let newDocs = docs.filter(doc => !this.documents.has(doc.id))
+        docs.map(doc => this.documents.has(doc.id)).forEach(doc => this.updateDocument(doc))
+        return new Promise((resolve, reject) => {
+            let req = https.request({
+                host:'api.mlab.com',
+                path:`/api/1/databases/${this.databaseName}/collections/${this.name}?apiKey=${this.apiKey}`,
+                headers:{
+                    "content-type":'application/json'
+                },
+                method:'POST'
+            })
+            .on('response', async res => {
+                if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                let data = await getAllData(res)
+                newDocs.forEach(doc => this.documents.set(doc.id, new document(this.apiKey, doc.id, doc)))
+                resolve()
+            })
+            req.write(JSON.stringify(newDocs))
+            req.end()
+
+        })
+    }
+    updateDocument(document){
+        return new Promise((resolve, reject) => {
+            let newDoc = Object.assign({}, this.documents.get(document.id).data)
+            Object.assign(newDoc, document)
+            let req = https.request({
+                host:'api.mlab.com',
+                path:`/api/1/databases/${this.databaseName}/collections/${this.name}/${newDoc._id.$oid}?apiKey=${this.apiKey}`,
+                headers:{
+                    "content-type":'application/json'
+                },
+                method:'PUT'
+            })
+            .on('response', async res => {
+                if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                let data = await getAllData(res)
+                this.documents.get(newDoc.id).data = data
+                resolve()
+            })
+            req.write(JSON.stringify({$set:newDoc}))
+            req.end()
+
+        })
+    }
+    removeDocument(documentID){
+        if(!this.documents.has(documentID)) return
+        return new Promise((resolve, reject) => {
+            let doc = this.documents.get(document.id).data
+            let req = https.request({
+                host:'api.mlab.com',
+                path:`/api/1/databases/${this.databaseName}/collections/${this.name}/${doc._id.$oid}?apiKey=${this.apiKey}`,
+                headers:{
+                    "content-type":'application/json'
+                },
+                method:'DELETE'
+            })
+            .on('response', async res => {
+                if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                let data = await getAllData(res)
+                this.documents.delete(doc.id)
+                resolve()
+            })
+            req.end()
+        })
+    }
+    filterDocuments(fn){
+        let results = new Collection();
+        [...this.documents.entries()].forEach(([key, val]) => {
+            if(fn(val, key)) results.set(key, val)
+        })
+        return results
+    }
+    findDocument(fn){
+        let r;
+        [...this.documents.entries()].forEach(([key, val]) => {
+            if(!r &amp;&amp; fn(val, key)) r = val
+        })
+        return r
+    }
+}
+module.exports = collection</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">ok</div>
+				<div class="copyright">wow</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

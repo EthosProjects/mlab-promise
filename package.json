@@ -1,0 +1,27 @@
+{
+  "main": "index.js",
+  "name": "mlab-promise",
+  "author": "Logos King",
+  "bugs": {
+    "url": "https://github.com/Logos-King/mlab-promise/issues"
+  },
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  },
+  "deprecated": false,
+  "description": "A node.js promise version of mongolab-data-api. It's essentially the same as mongolab-data-api, except instead of specifying a callback, you just use .then",
+  "homepage": "https://github.com/Logos-King/mlab-promise#readme",
+  "keywords": [
+    "mongodb",
+    "mongolab",
+    "api",
+    "promise"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logos-King/mlab-promise.git"
+  },
+  "scripts": {},
+  "version": "0.0.4"
+}

@@ -1,0 +1,55 @@
+{
+    "plugins": ["plugins/markdown"],
+    "recurseDepth": 10,
+    "source": {
+        "includePattern": ".+\\.js(doc|x)?$",
+        "exclude": ["node_modules"],
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "systemName"            : "mLab Promise",
+        "systemSummary"         : "A method for communicating with the mLab API",
+        "systemLogo"            : "./favicon.ico",
+        "systemColor"           : "#800000",
+        "footer"                : "Produced by logos",
+        "copyright"             : "Collapsa Copyright ©2020",
+        "includeDate"           : false,
+        "dateFormat"            : "Do MMM YYYY",
+        "inlineNav"             : false,
+        "inverseNav"            : true,
+        "navMembers"            : [
+            {"kind": "class", "title": "Classes", "summary": "All documented classes."},
+            {"kind": "external", "title": "Externals", "summary": "All documented external members."},
+            {"kind": "global", "title": "Globals", "summary": "All documented globals."},
+            {"kind": "mixin", "title": "Mixins", "summary": "All documented mixins."},
+            {"kind": "interface", "title": "Interfaces", "summary": "All documented interfaces."},
+            {"kind": "module", "title": "Modules", "summary": "All documented modules."},
+            {"kind": "namespace", "title": "Namespaces", "summary": "All documented namespaces."},
+            {"kind": "tutorial", "title": "Tutorials", "summary": "All available tutorials."}
+        ],
+        "linenums"              : true,
+        "showTableOfContents"   : true,
+        "showAccessFilter"      : true ,
+        "analytics"             : "",
+        "collapseSymbols"       : false,
+        "methodHeadingReturns"  : true,
+        "outputSourceFiles"     : true,
+        "outputSourcePath"      : true,
+        "sort"                  : "linenum, longname, version, since",
+        "search"                : true,
+        "favicon"               : "",
+        "stylesheets"           :[],
+        "scripts"               :[]
+    },
+    "markdown": {
+        "parser": "gfm",
+        "hardwrap": true
+    }
+}

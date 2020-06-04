@@ -1,0 +1,609 @@
+<!-- start:readme.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>mLab Promise</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #800000;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #800000;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #800000;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #800000;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":false,"dateFormat":"Do MMM YYYY","systemName":"mLab Promise","systemSummary":"A method for communicating with the mLab API","systemLogo":"img/favicon.ico","systemColor":"#800000","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"ok","copyright":"wow","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":"","methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":"","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = true;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/favicon.ico);">
+					mLab Promise
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#changeResult">changeResult</a></li>
+											<li><a href="global.html#documentListOptions">documentListOptions</a></li>
+											<li><a href="global.html#Query">Query</a></li>
+											<li><a href="global.html#singleDocumentOptions">singleDocumentOptions</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="baseStructure.html">baseStructure</a></li>
+											<li><a href="collection.html">collection</a></li>
+											<li><a href="database.html">database</a></li>
+											<li><a href="document.html">document</a></li>
+											<li><a href="mlabInteractor.html">mlabInteractor</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">readme</span>
+				<h1><span class="name">mLab Promise</span></h1>
+				<div class="summary"><p>A method for communicating with the mLab API</p></div>			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-9 main-content">
+		<section class="readme-section">
+			<article><h1>mlab-promise</h1>
+<p><code>mlab-promise</code> is a node.js module designed to allow you to access <a href="http://docs.mlab.com/data-api/#reference">mLab's Data API</a> with minimal overhead.</p>
+<p>I don't intend to remove the old functions, but I added new cache functions which can be disabled. It effectively polls the database and loads all your information so that there's no wait between each function. <code>mlab-promise</code> has all the documentation that you'd need to access your mlab database. Also, this module and this documentation is based off of <a href="https://github.com/gamontal/mongolab-data-api">mongolab-data-api</a> by <a href="https://github.com/gamontal">gamontal</a>. Their version is no longer being maintained and purely synchronous. If you need a something like that, be sure to check it out their version.</p>
+<h2>Major change</h2>
+<ul>
+<li>All old functions except for <code>runCommand</code> and <code>updateDocuments</code> can now be run normally but will return with cached values for improved performance</li>
+<li>Cacheing values has yet to be properly documented, however it is much faster and uses much less requests, despite it's startup time of a few seconds</li>
+<li>Cacheing requires discord.js to also be installed, because the Maps that are written to are Collections</li>
+</ul>
+<h2>Installation</h2>
+<p>Using <a href="https://www.npmjs.com/">npm</a>:</p>
+<pre><code>$ npm install mlab-promise
+</code></pre>
+<p>If you don't have or don't want to use npm:</p>
+<pre><code>$ cd ~/.node_modules
+$ git clone git://github.com/Logos-King/mlab-promise.git
+</code></pre>
+<h2>Usage</h2>
+<p>To require the library and initialize it with your account API key:</p>
+<pre class="prettyprint source lang-javascript"><code>let mlabInteractor = require('mlab-promise')
+let mLab = new mlabInteractor('&lt;Your Api Key Here>', &quot;&lt;whether-to-cache>[boolean: true or false]&quot;,[ignore='databasenametonotcache']);
+</code></pre>
+<h3>Examples</h3>
+<p><strong>List databases</strong></p>
+<pre class="prettyprint source lang-javascript"><code>mlab.on('ready', () => {
+    console.log(mlab.databases.map(database => database.name)) // => [db1, db2, db3, ...]
+})
+</code></pre>
+<pre class="prettyprint source lang-javascript"><code>mLab.listDatabases()
+    .then(databases => {
+        console.log(data); // => [db1, db2, db3, ...]
+    });
+</code></pre>
+<p><strong>List collections</strong></p>
+<pre class="prettyprint source lang-javascript"><code>mlab.on('ready', () => {
+    console.log(mlab.databases.get('exampledb').collections.map(collection => collection.name))  // => [coll1, coll2, ...]
+})
+</code></pre>
+<pre class="prettyprint source lang-javascript"><code>mLab.listCollections('exampledb')
+    .then(collections => {
+        console.log(collections); // => [coll1, coll2, ...]
+    });
+</code></pre>
+<p><strong>List documents</strong></p>
+<pre class="prettyprint source lang-javascript"><code>mlab.on('ready', () => {
+    console.log(mlab.databases.get('exampledb').collections.get('examples').documents.map(document => document.data))  //=> [ { _id: 1234, ...  } ]
+})
+</code></pre>
+<pre class="prettyprint source lang-javascript"><code>var opt = {
+    database: 'exampledb',
+    collectionName: 'examples',
+    query: '{ &quot;key&quot;: &quot;value&quot; }'
+};
+
+mLab.listDocuments(options)
+    .then(console.log)
+</code></pre>
+<h3>Methods</h3>
+<h4><code>listDatabases</code></h4>
+<p>Get the databases linked to the authenticated account. Returns an array of strings</p>
+<p><code>.lastDatabases()</code></p>
+<h4><code>listCollections</code></h4>
+<p>Get the collections in the specified database. Returns an array.</p>
+<p><code>.listCollections(databaseName)</code></p>
+<p><em><strong>Parameters:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options.databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h4><code>listDocuments</code></h4>
+<p>Get the documents in the specified collection. Returns an array.</p>
+<p><code>.listDocuments(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>options.databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>options.collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>options.query</td>
+<td>List of properties that all results will have</td>
+<td><a href="https://logos-king.github.io/mlab-promise/global.html#Query"><code>Query</code></a></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>options.resultCount</td>
+<td>Number of results</td>
+<td><code>Number</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>options.setOfFields</td>
+<td>Specifies either the only fields to include(1) or the fields to exclude(0)</td>
+<td><code>Map&lt;string,number&gt;</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>options.findOne</td>
+<td>Whether to stop at the first or not</td>
+<td><code>Boolean</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>options.sortOrder</td>
+<td>Map containing a property name 1 or -1. 1 means to sort the results in ascending order by that property and vice versa. Default is to order them by when way they were added</td>
+<td><code>Map&lt;string,number&gt;</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>options.skipResults</td>
+<td>Number of results to skip. Useful for Paging</td>
+<td><code>Number</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>options.limit</td>
+<td>Maximum amount of results</td>
+<td><code>Number</code></td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+<h4><code>insertDocuments</code></h4>
+<p>Create a new document in the specified collection. Returns nothing.</p>
+<p><code>.insertDocuments(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td>options.databaseName</td>
+<td style="text-align:center">MongoDB database name</td>
+</tr>
+<tr>
+<td>options.collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>documents</td>
+<td>Documents to insert</td>
+<td><code>Array</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h4><code>updateDocuments</code></h4>
+<p>Update one or more documents in the specified collection. Returns nothing</p>
+<p><code>.updateDocuments(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>documents</td>
+<td>Documents to insert</td>
+<td><code>Array.&lt;Object&gt;</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>query</td>
+<td>List of properties that all updated documents will have</td>
+<td><a href="%5Dhttps://logos-king.github.io/mlab-promise/global.html#Query"><code>Query</code></a></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>allDocuments</td>
+<td>Whether or not to update all documents found.</td>
+<td><code>Boolean</code></td>
+<td style="text-align:center">No</td>
+</tr>
+<tr>
+<td>upsert</td>
+<td>Whether to insert document if none is found</td>
+<td><code>Boolean</code></td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+<h4><code>deleteDocuments</code></h4>
+<p>Replace the contents of some or all documents of a collection. Returns nothing</p>
+<p><code>.deleteDocuments(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>query</td>
+<td>List of properties that all deleted documents will have will have</td>
+<td><code>String</code></td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+<h4><code>viewDocument</code></h4>
+<p>View a single document. Returns nothing</p>
+<p><code>.viewDocument(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the document to manipulate</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h4><code>updateDocument</code></h4>
+<p>Update a single document. Returns nothing</p>
+<p><code>.updateDocument(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the document to manipulate</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>updateObject</td>
+<td>The document to be used to update</td>
+<td><code>Object</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h4><code>deleteDocument</code></h4>
+<p>Delete a single document. Returns nothing</p>
+<p><code>.deleteDocument(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>collectionName</td>
+<td>MongoDB collection name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>id</td>
+<td>ID of the document to manipulate</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h4><code>runCommand</code></h4>
+<p>Run a MongoDB database command. Returns nothing</p>
+<p><code>.runCommand(options)</code></p>
+<p><em><strong>Options:</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>databaseName</td>
+<td>MongoDB database name</td>
+<td><code>String</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>commands</td>
+<td>MongoDB database command</td>
+<td><code>Object</code></td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<h3>Notes</h3>
+<ul>
+<li><strong>Creating a new collection</strong>
+<ul>
+<li>As soon as you POST your first document you should see the collection appear</li>
+</ul>
+</li>
+<li><strong>runCommands</strong>
+<ul>
+<li>Only certain MongoDB commands are exposed through the Data API</li>
+<li>The available commands are:
+<ul>
+<li>getLastError</li>
+<li>getPrevError</li>
+<li>ping</li>
+<li>profile</li>
+<li>repairDatabase</li>
+<li>resetError</li>
+<li>whatsmyuri</li>
+<li>convertToCapped</li>
+<li>distinct</li>
+<li>findAndModify</li>
+<li>geoNear</li>
+<li>reIndex</li>
+<li>collStats</li>
+<li>dbStats</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Requirements</h2>
+<ul>
+<li><a href="https://github.com/Logos-King/mlab-promise/">mlab-promise</a></li>
+<li><a href="https://mlab.com/">mLab</a> account w/API key.</li>
+<li><a href="https://nodejs.org/en/download/">node.js</a> v12.16.3+ (This module was made in this version)</li>
+</ul>
+<h2>Disclaimer</h2>
+<h3><a href="http://docs.mlab.com/connecting/#methods">From the official mLab Data API documentation</a>:</h3>
+<blockquote>
+<p>mLab databases can be accessed by your application code in two ways.<br>
+The first method - the one we strongly recommend - is to connect using one of the MongoDB drivers (as described above). You do not need to use our API if you use the driver. In fact, using a driver provides better performance, better security, and more functionality.</p>
+</blockquote>
+<blockquote>
+<p>The second method is to connect via mLab’s RESTful Data API. Use this method only if you cannot connect using a MongoDB driver.</p>
+</blockquote>
+<blockquote>
+<p><em><strong>Visit mLab's official documentation if you have any security concerns about using the Data API</strong></em></p>
+</blockquote>
+<h2>Contributions</h2>
+<p>If you want anything added, you can send me an email  <a href="mailto:logospiercing@gmail.com">here</a>. Also, if you want to add anything yourself or see a problem with the module, you can create a pull request or open an issue. I'll try to fix it within a week. Maybe less!</p>
+<h2>License</h2>
+<p><a href="https://github.com/Logos-King/mlab-promise/blob/master/LICENSE.md">MIT</a> © Logos King</p></article>
+		</section>
+			</div>
+				<div class="col-md-3 side-content">
+					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
+				</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">ok</div>
+				<div class="copyright">wow</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:readme.hbs -->

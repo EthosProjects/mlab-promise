@@ -1,0 +1,636 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>index.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #800000;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #800000;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #800000;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #800000;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":false,"dateFormat":"Do MMM YYYY","systemName":"mLab Promise","systemSummary":"A method for communicating with the mLab API","systemLogo":"img/favicon.ico","systemColor":"#800000","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"ok","copyright":"wow","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":true,"showTableOfContents":true,"showAccessFilter":true,"analytics":"","methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":"","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/favicon.ico);">
+					mLab Promise
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#changeResult">changeResult</a></li>
+											<li><a href="global.html#documentListOptions">documentListOptions</a></li>
+											<li><a href="global.html#Query">Query</a></li>
+											<li><a href="global.html#singleDocumentOptions">singleDocumentOptions</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="baseStructure.html">baseStructure</a></li>
+											<li><a href="collection.html">collection</a></li>
+											<li><a href="database.html">database</a></li>
+											<li><a href="document.html">document</a></li>
+											<li><a href="mlabInteractor.html">mlabInteractor</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">index.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">'use strict';
+const https = require('https')
+const { EventEmitter } = require('events')
+const database = require('./database')
+const collection = require('./collection')
+const document = require('./document')
+const Collection = require('discord.js').Collection
+/**
+ * @typedef changeResult
+ * @property {number} n 
+ * @property {removed} number
+ */
+/**
+ * 
+ * @typedef Query
+ * @type {Map&lt;string,string|number|boolean>}
+ */
+const parseMap = map => {
+    map = JSON.parse(`{${Array.from(map).map(([key, value]) => `"${key}":${value}`).join(',')}}`)
+    return map
+}
+let formFormat = data => {
+    return Object.keys(data).map(k => {
+        if(!data[k]) return ''
+        if(data[k] instanceof Map){
+            data[k] = parseMap(data[k])
+        }
+        if(data[k].toString() == '[object Object]') data[k] = JSON.stringify(data[k])
+        return `${k}=${encodeURIComponent(data[k])}`
+    }).filter(d => d).join('&amp;')
+}
+const getAllData = res => {
+    return new Promise((resolve, reject) => {
+        let buffer = []
+        res.on('data', data => buffer.push(data))
+        res.on('end', () => resolve(JSON.parse(buffer.join(''))))
+    })
+}
+const getBrokenData = res => {
+    return new Promise((resolve, reject) => {
+        let buffer = []
+        res.on('data', data => buffer.push(data))
+        res.on('end', () => resolve(buffer.join('')))
+    })
+}
+/**
+ * The main hub for communicating with mLab
+ */
+class mlabInteractor extends EventEmitter {
+    /**
+     * @param {string} apiKey 
+     * @param {Array.&lt;string>} ignore
+     * 
+     */
+    constructor(apiKey, cache, ignore = []){
+        super()
+        this.apiKey = apiKey;
+        /**
+         * @type {Collection&lt;string, database>}
+         */
+        this.databases = new Collection()
+
+        https.request({
+            host:'api.mongolab.com',
+            path:`/api/1/databases?apiKey=${apiKey}`,
+            method:"GET"
+        })
+        .on('response', async res => {
+            if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+            if(!cache) return
+            let data = await getAllData(res)
+            data = data.filter(d => !ignore.includes(d))
+            let dataPromise = data.map(async databaseName => {
+                return new Promise(resolve => {
+                    https.get(`https://api.mongolab.com/api/1/databases/${databaseName}/collections?apiKey=${apiKey}`)
+                    .on('response', async res => {
+                        if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                        let data = await getAllData(res)
+                        let skip = ['objectlabs-system', 'objectlabs-system.admin.collections', 'system.indexes']
+                        data = data.filter(d => !skip.includes(d))
+                        /**
+                         * @type {Array.&lt;Promise&lt;collection>>}
+                         */
+                        let dataPromise = data.map(async collectionName => {
+                            return new Promise(resolve => {
+                                https.get(`https://api.mongolab.com/api/1/databases/${databaseName}/collections/${collectionName}?apiKey=${apiKey}`)
+                                .on('response', async res => {
+                                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                                    let data = await getAllData(res)
+                                    resolve(new collection(apiKey, collectionName, data.map(d => [d.id ? d.id : d._id.$oid, new document(apiKey, d.id ? d.id : d._id.$oid, d)]), databaseName))
+                                })
+                            })
+                        })
+                        Promise.all(dataPromise)
+                            .then(c => {
+                                resolve(data.map((d, i) => [d, c[i]]))
+                            })
+                    })
+                })
+            })
+            Promise.all(dataPromise)
+                .then(d => {
+                    d.forEach((d, i) => {
+                        this.databases.set(data[i], new database(apiKey, data[i], d))
+                    })
+                    this.emit('ready')
+                    console.log('Ready')
+                })
+        })
+        .end()
+    }
+    /**
+     * Lists all databases on an account
+     * @param {boolean} cache Whether or not to use cached values
+     * @returns {Promise&lt;Array.&lt;string>>} contains the names of the databases
+     */
+    async listDatabases(cache){
+        if(!cache){ 
+            return new Promise(resolve => {
+                https.get({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases?apiKey=${this.apiKey}`,
+                    method:"GET"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+            })
+        }else return new Promise(resolve => {
+            resolve(this.databases.map(d => d.name))
+        })
+    }
+    /**
+     * Lists all collections in a given database
+     * Accepts databaseName as a property of an object also for ease of access
+     * @param {String} options MongoDB database name 
+     * @param {boolean} cache Whether or not to use cached values
+     * @returns {Array.&lt;string>} contains the names of the collections
+     */
+    async listCollections(options, cache){
+        let db = options.databaseName || options
+        if(!db || (typeof db != 'string')) return this.emit('error', 'Invalid database name')
+        if(!cache) return new Promise(resolve => {
+            https.get({
+                host:'api.mongolab.com',
+                path:`/api/1/databases/${db}/collections?apiKey=${this.apiKey}`,
+                method:"GET"
+            })
+            .on('response', async res => {
+                if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                let data = await getAllData(res)
+                resolve(data)
+            })
+        })
+        else return new Promise(resolve => {
+            resolve([...this.databases.get(db).collections.keys()])
+        }) 
+    }
+    /**
+     * @typedef documentListOptions
+     * @property {string} databaseName MongoDB database name 
+     * @property {string} collectionName MongoDB collection name
+     * @property {Query=} query List of properties that all results will have
+     * @property {number=} resultCount Number of results
+     * @property {Map&lt;string,number>=} setOfFields Specifies either the only fields to include(1) or the fields to exclude(0)
+     * @property {boolean=} findOne Whether to stop at the first or not
+     * @property {Map&lt;string,number>=} sortOrder Map containing a property name 1 or -1. 1 means to sort the results in ascending order by that property and vice versa. Default is to order them by when way they were added
+     * @property {number=} skipResults Number of results to skip. Useful for Paging
+     * @property {number=} limit Maximum amount of results
+     */
+    /**
+     * 
+     * @param {documentListOptions} options 
+     * @param {boolean} cache Whether or not to use cached values
+     */
+    listDocuments(options, cache){
+        if(!options.databaseName || !options.collectionName) throw new Error('Database Name and Collection Name are required')
+        let op = {
+            q: options.query,
+            c: options.resultCount,
+            f: options.setOfFields,
+            fo: options.findOne,
+            s: options.sortOrder,
+            sk: options.skipResults,
+            l: options.limit
+        };
+        let query = formFormat(op)
+        if(!cache){ return new Promise(resolve => {
+            https.get({
+                host:'api.mongolab.com',
+                path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}?apiKey=${this.apiKey}${query.length ? '&amp;' : ''}${query}`,
+                method:"GET"
+            })
+            .on('response', async res => {
+                if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                let data = await getAllData(res)
+                resolve(data)
+            })
+        })}
+        else {
+            let queryFilter = options.query ? this.databases.get(options.databaseName).collections.get(options.collectionName).filterDocuments(d => [...options.query.keys()].every(d.data[key] == options.query.get(key))) :  this.databases.get(options.databaseName).collections.get(options.collectionName).documents
+            
+            if(options.setOfFields){
+                if([...options.setOfFields.keys()].some(v => !v)){
+                    queryFilter = [...queryFilter.values()].map(doc => doc.data)
+                    queryFilter.forEach(doc => {
+                        for(const prop in doc){
+                            if([...options.setOfFields.keys()].includes(prop)) doc[prop] = undefined
+                        }
+                    })
+                }else {
+                    queryFilter = [...queryFilter.values()].map(doc => doc.data)
+                    queryFilter.forEach(doc => {
+                        for(const prop in doc){
+                            if(![...options.setOfFields.keys()].includes(prop)) doc[prop] = undefined
+                        }
+                    })
+                }
+            }else {
+                queryFilter = [...queryFilter.values()].map(doc => doc.data)
+            }
+            if(options.sortOrder){
+                let sort = [...options.sortOrder.entries()][0]
+                queryFilter = queryFilter.sort((a, b) => (sort[1] > 0 ? 1 : -1) * (a[sort[0]] - b[sort[0]]))
+            }
+            if(options.skipResults) queryFilter.splice(0, options.skipResults)
+            if(queryFilter.length > options.limit) queryFilter.splice(options.limit)
+            if(options.findOne) queryFilter = queryFilter.shift()
+            return new Promise(resolve => resolve(queryFilter))
+        }
+    }
+    /**
+     * 
+     * @param {object} options 
+     * @param {string} options.databaseName MongoDB database name 
+     * @param {string} options.collectionName MongoDB collection name
+     * @param {Array.&lt;object>} options.documents Documents to insert
+     * @param {boolean} cache Whether or not to use cached values
+     */
+    insertDocuments(options, cache){
+        if(!options.databaseName || !options.collectionName || ! options.documents) throw new Error('Invalid options')
+        if(!cache){ 
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}?apiKey=${this.apiKey}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"POST"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+                req.write(JSON.stringify(options.documents))
+                req.end()
+            })
+        }else {
+            return new Promise(resolve => 
+                this.databases.get(options.databaseName).collections.get(options.collectionName).addDocuments(options.documents)
+            )
+        }
+    }
+    /**
+     * 
+     * @param {object} options 
+     * @param {string} options.databaseName MongoDB database name 
+     * @param {string} options.collectionName MongoDB collection name
+     * @param {Query=} options.query List of properties that all updated documents will have
+     * @param {boolean=} options.allDocuments Whether or not to update all documents found.
+     * @param {boolean=} options.upsert Whether to insert document if none is found
+     * @param {Array.&lt;object>} options.documents Documents to insert
+     * @param {boolean} cache Whether or not to use cached values
+     */
+    updateDocuments(options, cache){
+        if(!options.databaseName || !options.collectionName || !options.documents) throw new Error('Invalid Options')
+        let op = {
+            q: options.query,
+            m: options.allDocuments,
+            u: options.upsert
+        };
+        let query = formFormat(op)
+        if(!cache){ 
+            console.log(`/api/1/databases/${options.databaseName}/collections/${options.collectionName}?apiKey=${this.apiKey}${query.length ? '&amp;' : ''}${query}`)
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}?apiKey=${this.apiKey}${query.length ? '&amp;' : ''}${query}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"PUT"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', await getBrokenData(res).message)
+                    let data = await getBrokenData(res)
+                    resolve(data)
+                })
+                options.documents = options.documents.map(doc => parseMap(doc))
+                console.log(JSON.stringify(options.documents))
+                req.write(
+                    JSON.stringify(options.documents)
+                )
+                req.end()
+            })
+        }else {
+            return new Promise(resolve =>
+                this.databases.get(options.databaseName).collections.get(options.collectionName).addDocumentsForce(options.documents)
+            )
+        }
+    }
+    /**
+     * Deletes documents from database
+     * @param {object} options 
+     * @param {string} options.databaseName MongoDB database name 
+     * @param {string} options.collectionName MongoDB collection name
+     * @param {Query=} options.query List of properties that all deleted documents will have will have
+     * @param {boolean} cache Whether or not to use cached values
+     * @returns {changeResult}
+     */
+    deleteDocuments(options, cache){
+        if(!options.databaseName || !options.collectionName || !options.query) throw new Error('Invalid Options')
+        let op = {
+            q:options.query
+        }
+        let query = formFormat(op)
+        if(!cache){
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}?apiKey=${this.apiKey}${query.length ? '&amp;' : ''}${query}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"PUT"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', await getBrokenData(res).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+                req.write(JSON.stringify([]))
+                req.end()
+            })
+        }else {
+            return this.emit('error', "This function does not have a cached form")
+        }
+    }
+    /**
+     * @typedef singleDocumentOptions
+     * @property {string} databaseName MongoDB database name 
+     * @property {string} collectionName MongoDB collection name
+     * @property {string} id ID of the document to manipulate
+     */
+    /**
+     * Views one single document. You need to pass the ._id.$oid property as the ID
+     * @param {singleDocumentOptions} options Options for viewing
+     * @param {boolean} cache Whether or not to use cached values
+     * @returns {Promise}
+     */
+    viewDocument(options, cache){
+        if(!options.databaseName || !options.collectionName || !options.id) throw new Error('Invalid Options')
+        if(!cache){
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}/${options.id}?apiKey=${this.apiKey}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"GET"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+                req.end()
+            })
+        }else {
+            return this.databases.get(options.databaseName).collections.get(options.collectionName).findDocument(doc => doc._id.$oid == options.id).data
+        }
+    }
+    /**
+     * Updates one single document. You need to pass the ._id.$oid property as the ID
+     * @param {singleDocumentOptions} options Options for updating
+     * @param {Object} updateObject The document to be used to update
+     * @param {boolean} cache Whether or not to use cached values
+     * @returns {PromiseS}
+     */
+    updateDocument(options, updateObject, cache){
+        if(!options.databaseName || !options.collectionName || !options.id || !updateObject) throw new Error('Invalid Options')
+        if(!cache){
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}/${options.id}?apiKey=${this.apiKey}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"PUT"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+                req.write(JSON.stringify(updateObject))
+                req.end()
+            })
+        }else {
+            return new Promise(resolve => {
+                let collection = this.databases.get(options.databaseName).collections.get(options.collectionName)
+                resolve(collection.updateDocument({
+                    ...collection.findDocument(fn => fn.data._id.$oid == options.id).data,
+                    ...updateObject
+                }))
+            })
+        }
+    }
+    /**
+     * Deletes one single document. You need to pass the ._id.$oid property as the ID
+     * @param {singleDocumentOptions} options Options for deletion
+     * @returns {Promise}
+     */
+    deleteDocument(options, cache){
+        if(!options.databaseName || !options.collectionName || !options.id) throw new Error('Invalid Options')
+        if(!cache){
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/collections/${options.collectionName}/${options.id}?apiKey=${this.apiKey}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"DELETE"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+                req.end()
+            })
+        }else {
+            return new Promise(resolve => {
+                let collection = this.databases.get(options.databaseName).collections.get(options.collectionName)
+                resolve(collection.removeDocument(collection.findDocument(fn => fn.data._id.$oid == options.id).name))
+            })
+        }
+    }
+    /**
+     * Runs commands on a database. Check out the docs for more info on it
+     * @param {object} options The options for the commands to run
+     * @param {string} options.databaseName MongoDB database name 
+     * @param {object} options.commands MongoDB database command
+     * @returns {Promise}
+     */
+    runCommand(options, cache){
+        if(!options.databaseName || !options.commands) throw new Error('Invalid Options')
+        if(!cache){
+            return new Promise(resolve => {
+                let req = https.request({
+                    host:'api.mongolab.com',
+                    path:`/api/1/databases/${options.databaseName}/runCommand?apiKey=${this.apiKey}`,
+                    headers:{
+                        "content-type":'application/json'
+                    },
+                    method:"POST"
+                })
+                .on('response', async res => {
+                    if(res.statusCode >= 400) return this.emit('error', JSON.parse(await getBrokenData(res)).message)
+                    let data = await getAllData(res)
+                    resolve(data)
+                })
+                req.write(JSON.stringify(option.commands))
+                req.end()
+            })
+        }else return this.emit('error', "This function does not have a cached form")
+    }
+}
+module.exports = {
+    mlabInteractor:mlabInteractor,
+    database:database,
+    collection:collection,
+    document:document
+}</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">ok</div>
+				<div class="copyright">wow</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->
